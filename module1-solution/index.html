@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="LunchCheck">
+  <head>
+    <meta charset="utf-8">
+    <title>Lunch Menu</title>
+	<script src="scripts/angular.min.js"></script>
+	<script src="scripts/app.js"></script>
+  </head>
+  <body ng-controller="LunchCheckController">
+    <h1>Hello There. What is for lunch today?</h1>
+	<input style="float:left;margin-right:1em;" type="text" ng-model="items" ng-style="borderColor"> <!-- Empty ,, is not considered as an item-->
+	<input style="float:left;margin-right:1em;" type="button" ng-click="checkQuant()" value="Check If Too Much">
+	<div style="clear:both;padding:1em;" ng-style="textColor">{{quantText}}</div>
+  </body>
+</html>
