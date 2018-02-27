@@ -1,0 +1,6 @@
+<ul>
+	<li ng-repeat="record in $ctrl.category">
+		<a ui-sref="items({short_name:record.short_name})" class="fl"><b class="pr">{{record.name}}</b></a>
+		<div class="clear"><i>{{record.special_instructions}}</i></div>
+	</li>
+<ul>
