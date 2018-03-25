@@ -1,0 +1,23 @@
+<div id="main-content" class="container">
+  <div class="jumbotron">
+    <img src="images/jumbotron_768.jpg" alt="Picture of restaurant" class="img-responsive visible-xs">
+  </div>
+  <div id="home-tiles" class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <a ui-sref="public.menu"><div id="menu-tile"><span>menu</span></div></a>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <a ui-sref="public.menuitems({category: 'SP'})">
+        <div id="specials-tile"><span>specials</span></div>
+      </a>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <a href="https://www.google.com/maps/place/Clemson+University/@34.6760942,-82.8364148,15z/data=!4m5!3m4!1s0x0:0x8d3219cb792a8e56!8m2!3d34.6760942!4d-82.8364148?sa=X&ved=0ahUKEwjk3MaA94XaAhXSyVMKHZ2JD_oQ_BIInAIwGg" target="_blank">
+        <div id="map-tile">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13124.610984483754!2d-82.8364148!3d34.6760942!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d3219cb792a8e56!2sClemson+University!5e0!3m2!1sen!2sus!4v1521927844216" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+          <span>map</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

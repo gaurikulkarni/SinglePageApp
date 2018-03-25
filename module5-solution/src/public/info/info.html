@@ -1,0 +1,33 @@
+<div class="container">
+  <fieldset>
+      <legend>Registered Information</legend>
+		<div class="table" ng-if="infoCtrl.user !== null">
+			<div class="row">
+				<label>First Name:</label>
+				<span>{{infoCtrl.user.firstname}}</span>
+			</div>
+			<div class="row"> 
+				<label>Last Name:</label>
+				<span>{{infoCtrl.user.lastname}}</span>
+			</div>
+			<div class="row"> 
+				<label>Email:</label>
+				<span>{{infoCtrl.user.email}}</span>
+			</div>
+			<div class="row"> 		
+				<label>Phone Number:</label>
+				<span>{{infoCtrl.user.phone}}</span>
+			</div>
+			<div class="row"> 
+				<label>Favourite Dish:</label>		
+				<span><menu-item
+					 menu-item="infoCtrl.user.menu_item">
+				</menu-item></span>
+			</div>
+		</div>
+        <div ng-if="infoCtrl.user === null">
+			<h3>Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a></h3>
+		</div>
+    </fieldset>
+
+</div>

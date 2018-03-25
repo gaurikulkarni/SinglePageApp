@@ -1,0 +1,79 @@
+<div class="container">
+  <fieldset>
+      <legend>Signup for the Newsletter</legend>
+      <form name='signupForm' novalidate>
+		<div class="row">
+		<label>First Name<span class="red">*</span>:</label>
+        <input type="text" name="firstname" placeholder="Jamie"
+          ng-model="signupCtrl.user.firstname"
+          required
+          ng-maxlength="30">
+          <span
+            ng-if="signupForm.firstname.$error.required && signupForm.firstname.$touched">
+            First Name is required.
+          </span>
+          <span ng-if="signupForm.firstname.$error.maxlength && signupForm.firstname.$touched">
+            First Name must not be longer than 30 characters
+          </span>
+        </div>
+		<div class="row"> 
+		<label>Last Name:</label>
+        <input type="text" name="lastname" placeholder="D'Souza"
+          ng-model="signupCtrl.user.lastname"
+          ng-maxlength="50">        
+          <span ng-if="signupForm.lastname.$error.maxlength && signupForm.lastname.$touched">
+            Last Name must not be longer than 30 characters
+          </span>
+		</div>
+		<div class="row"> 
+		<label>Email<span class="red">*</span>:</label>
+        <input type="email" name="email" placeholder="jdsouza@gmail.com"
+          ng-model="signupCtrl.user.email"
+          required>
+		  <span
+            ng-if="signupForm.email.$error.required && signupForm.email.$touched">
+            Email is required.
+          </span>
+          <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+            Email must be in the format jdsouza@gmail.com
+          </span>
+        </div>
+		<div class="row"> 		
+		<label>Phone Number:</label>
+        <input type="text" name="phone" placeholder="###-###-####"
+          ng-model="signupCtrl.user.phone"
+          pattern="(\d{3})-(\d{3})-(\d{4})">
+          <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+        </div>
+		<div class="row"> 
+		<label>Favourite Dish Short Name<span class="red">*</span>:</label>
+		<input type="text" name="menu_shortname" placeholder="A1"
+          ng-model="signupCtrl.user.menu_shortname"
+		  signup-directive = "{{signupCtrl.user.menu_shortname}}"
+		  required>
+		  <span
+            ng-if="signupForm.menu_shortname.$error.required && signupForm.menu_shortname.$touched">
+            Favourite Dish Short Name is required.
+          </span>
+		  <span ng-if="signupForm.$submitted && !signupCtrl.checkMenuShortName">
+			No such menu number exists.
+		  </span>
+        <!--<select name="menu_shortname" >
+        <option ng-repeat="item in signupCtrl.menuItems.menu_items" value="{{item.short_name}}">{{item.name}}</option>
+		</select>-->
+        </div>
+		<div class="row">
+		<label></label>		
+        <button
+          ng-disabled="signupForm.$invalid"
+          ng-click="signupCtrl.submitForm()">Submit</button>
+		  <span ng-if="signupCtrl.completed">
+			Your information has been saved.
+		  </span>
+        </div>
+      </form>
+    </fieldset>
+
+</div>
