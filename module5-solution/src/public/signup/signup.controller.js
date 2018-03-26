@@ -2,15 +2,14 @@
 "use strict";
 
 angular.module('public')
-.controller('SignupController', SignupController);
-//.directive('signupDirective',SignupDirective);
+.controller('SignupController', SignupController)
+.directive('signupDirective',SignupDirective);
 
 SignupController.$inject = ['MenuService','InfoFactory'];
 function SignupController(MenuService,InfoFactory) {
   var $ctrl = this;
-  //console.log(menuItems.menu_items);
   $ctrl.checkMenuShortName = true;
-  $ctrl.menu_item = null;
+  $ctrl.user = {};
   $ctrl.submitForm = function () {
 	var promise = MenuService.getMenuItem($ctrl.user.menu_shortname);
 	promise.then(function(response){
@@ -29,24 +28,36 @@ function SignupController(MenuService,InfoFactory) {
   };
 };
 
-/*SignupDirective.$inject = ['menuItems'];
-function SignupDirective(){
+SignupDirective.$inject = ['MenuService','InfoFactory','$q','ApiPath','$http','$timeout'];
+function SignupDirective(MenuService,InfoFactory,$q,ApiPath,$http,$timeout){
 	var ddo = {
+		scope:'=',
 		restrict: 'A',
 		require: 'ngModel',
-		link: function (scope, element, attr, ngModel) {
-			//Check if menu short name exists
-			console.log(element.value);
-			for(item in menuItems.menu_items){
-				if(item["short_name"] == menu_shortname){
-					return true;
-				}
-			}
-			return false;		  
+		link: function (scope, elem, attr, ngModel) {
+			 ngModel.$asyncValidators.checkMenuShortName = function(modelValue, viewValue) {
+				var short_name = viewValue;
+				var deferred = $q.defer();
+			  
+				// ask the server if this username exists
+				$http.get(ApiPath + '/menu_items/'+short_name+'.json').then(
+				  function(response) {
+					// simulate a server response delay of half a second
+					$timeout(function() {
+					  if (response.data && response.data.exists) {
+						deferred.reject();
+					  } else {
+						deferred.resolve();						
+					  }
+					}, 500);
+				  });
+				// return the promise of the asynchronous validator
+				return deferred.promise;
+			  }						
 		}
 	}
 	return ddo;
 }
-*/
+
 
 })();

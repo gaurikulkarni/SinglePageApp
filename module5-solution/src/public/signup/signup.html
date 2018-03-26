@@ -51,13 +51,13 @@
 		<label>Favourite Dish Short Name<span class="red">*</span>:</label>
 		<input type="text" name="menu_shortname" placeholder="A1"
           ng-model="signupCtrl.user.menu_shortname"
-		  signup-directive = "{{signupCtrl.user.menu_shortname}}"
+		  signup-directive
 		  required>
 		  <span
             ng-if="signupForm.menu_shortname.$error.required && signupForm.menu_shortname.$touched">
             Favourite Dish Short Name is required.
           </span>
-		  <span ng-if="signupForm.$submitted && !signupCtrl.checkMenuShortName">
+		  <span ng-if="!signupForm.menu_shortname.$valid && signupForm.menu_shortname.$dirty">
 			No such menu number exists.
 		  </span>
         <!--<select name="menu_shortname" >
@@ -67,7 +67,7 @@
 		<div class="row">
 		<label></label>		
         <button
-          ng-disabled="signupForm.$invalid"
+          ng-disabled="signupForm.$invalid || !signupForm.menu_shortname.$valid"
           ng-click="signupCtrl.submitForm()">Submit</button>
 		  <span ng-if="signupCtrl.completed">
 			Your information has been saved.
